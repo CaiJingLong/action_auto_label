@@ -1,6 +1,6 @@
 name: 'On issue'
 on: 
-  issue:
+  issues:
     types: [opened, reopened, edited]
 jobs:
   build:
