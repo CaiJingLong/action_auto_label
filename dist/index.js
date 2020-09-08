@@ -1419,7 +1419,7 @@ const github = __importStar(__webpack_require__(438));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            if (github.context.eventName === 'issues') {
+            if (github.context.eventName !== 'issues') {
                 return;
             }
             const payload = github.context

@@ -4,7 +4,7 @@ import * as Webhooks from '@octokit/webhooks'
 
 async function run(): Promise<void> {
   try {
-    if (github.context.eventName === 'issues') {
+    if (github.context.eventName !== 'issues') {
       return
     }
 
