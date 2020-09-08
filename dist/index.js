@@ -1436,7 +1436,7 @@ function run() {
             const regex = /\[([^\]]+)\]/g;
             const array = regex.exec(payload.issue.title);
             if (array == null) {
-                octokit.issues.createComment({
+                yield octokit.issues.createComment({
                     owner,
                     repo,
                     issue_number,
@@ -1456,7 +1456,7 @@ function run() {
                 const labels = [label.name];
                 if (labelName.toUpperCase() === label.name.toUpperCase()) {
                     core.info('找到了标签');
-                    octokit.issues.addLabels({
+                    yield octokit.issues.addLabels({
                         owner,
                         repo,
                         issue_number,
@@ -1466,7 +1466,7 @@ function run() {
                 }
             }
             if (!haveResult) {
-                octokit.issues.createComment({
+                yield octokit.issues.createComment({
                     owner,
                     repo,
                     issue_number,

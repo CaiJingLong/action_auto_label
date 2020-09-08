@@ -28,7 +28,7 @@ async function run(): Promise<void> {
     const regex = /\[([^\]]+)\]/g
     const array = regex.exec(payload.issue.title)
     if (array == null) {
-      octokit.issues.createComment({
+      await octokit.issues.createComment({
         owner,
         repo,
         issue_number,
@@ -51,7 +51,7 @@ async function run(): Promise<void> {
       const labels = [label.name]
       if (labelName.toUpperCase() === label.name.toUpperCase()) {
         core.info('找到了标签')
-        octokit.issues.addLabels({
+        await octokit.issues.addLabels({
           owner,
           repo,
           issue_number,
@@ -62,7 +62,7 @@ async function run(): Promise<void> {
     }
 
     if (!haveResult) {
-      octokit.issues.createComment({
+      await octokit.issues.createComment({
         owner,
         repo,
         issue_number,
