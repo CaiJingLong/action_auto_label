@@ -91,8 +91,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const core = __importStar(__webpack_require__(186));
+function reverse(src) {
+    let r = '';
+    for (const e of src) {
+        r = r + e;
+    }
+    return r;
+}
 function helloStr(src) {
-    return src.repeat(10);
+    return reverse(src);
 }
 function run() {
     return __awaiter(this, void 0, void 0, function* () {

@@ -1,7 +1,15 @@
 import * as core from '@actions/core'
 
+function reverse(src: string): string {
+  let r = ''
+  for (const e of src) {
+    r = r + e
+  }
+  return r
+}
+
 function helloStr(src: string): string {
-  return src.repeat(10)
+  return reverse(src)
 }
 
 async function run(): Promise<void> {
