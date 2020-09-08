@@ -91,12 +91,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const core = __importStar(__webpack_require__(186));
+function helloStr(src) {
+    return `Hello ${src}`;
+}
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             core.info(`Hello world`);
-            const username = core.getInput('username');
-            core.info(`input username = ${username}`);
+            const username = core.getInput('user_name');
+            core.info(helloStr(username));
         }
         catch (error) {
             core.setFailed(error.message);
