@@ -34,6 +34,7 @@ async function run(): Promise<void> {
         issue_number,
         body: `没有找到[xxx]类型的标签`
       })
+      core.info('没有找到标签')
       return
     }
 
@@ -49,6 +50,7 @@ async function run(): Promise<void> {
     for (const label of allLabels.data) {
       const labels = [label.name]
       if (labelName.toUpperCase() === label.name.toUpperCase()) {
+        core.info('找到了标签')
         octokit.issues.addLabels({
           owner,
           repo,
