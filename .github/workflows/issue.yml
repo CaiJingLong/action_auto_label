@@ -9,4 +9,4 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ./
         with:
-          username: ${{ securts.USER_NAME }}
+          username: ${{ secrets.USER_NAME }}
