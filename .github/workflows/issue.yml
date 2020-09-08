@@ -10,4 +10,4 @@ jobs:
       - uses: ./
         with:
           user_name: ${{ secrets.USER_NAME }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}

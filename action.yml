@@ -5,7 +5,7 @@ inputs:
   user_name:
     required: true
     description: 'User name'
-  github_token:
+  github-token:
     required: true
     description: 'Your github token, it is secrets.GITHUB_TOKEN.'
 runs:

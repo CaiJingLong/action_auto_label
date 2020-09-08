@@ -1429,7 +1429,7 @@ function run() {
             core.info(`Hello ${username}`);
             core.info(`username === admin : ${username === 'admin'}`);
             core.info(`event name = ${github.context.eventName}`);
-            const token = core.getInput('github_token');
+            const token = core.getInput('github-token');
             const octokit = github.getOctokit(token);
             const { owner, repo } = github.context.repo;
             const issue_number = payload.issue.id;
