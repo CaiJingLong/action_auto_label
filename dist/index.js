@@ -1419,11 +1419,58 @@ const github = __importStar(__webpack_require__(438));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            if (github.context.eventName === 'issues') {
+                return;
+            }
+            const payload = github.context
+                .payload;
             core.info(`Hello world`);
             const username = core.getInput('user_name');
             core.info(`Hello ${username}`);
             core.info(`username === admin : ${username === 'admin'}`);
             core.info(`event name = ${github.context.eventName}`);
+            const token = core.getInput('GITHUB_TOKEN');
+            const octokit = github.getOctokit(token);
+            const { owner, repo } = github.context.repo;
+            const issue_number = payload.issue.id;
+            const regex = /\[([^\]]+)\]/g;
+            const array = regex.exec(payload.issue.title);
+            if (array == null) {
+                octokit.issues.createComment({
+                    owner,
+                    repo,
+                    issue_number,
+                    body: `没有找到[xxx]类型的标签`
+                });
+                return;
+            }
+            const labelName = array[1];
+            core.info(`labelname is = ${labelName}`);
+            const allLabels = yield octokit.issues.listLabelsForRepo({
+                owner,
+                repo
+            });
+            let haveResult = false;
+            for (const label of allLabels.data) {
+                const labels = [label.name];
+                if (labelName.toUpperCase() === label.name.toUpperCase()) {
+                    octokit.issues.addLabels({
+                        owner,
+                        repo,
+                        issue_number,
+                        labels
+                    });
+                    haveResult = true;
+                }
+            }
+            if (!haveResult) {
+                octokit.issues.createComment({
+                    owner,
+                    repo,
+                    issue_number,
+                    body: `没有找到 ${labelName}`
+                });
+            }
         }
         catch (error) {
             core.setFailed(error.message);
