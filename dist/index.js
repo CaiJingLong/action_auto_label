@@ -95,6 +95,8 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             core.info(`Hello world`);
+            const username = core.getInput('username');
+            core.info(`input username = ${username}`);
         }
         catch (error) {
             core.setFailed(error.message);

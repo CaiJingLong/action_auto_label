@@ -1,11 +1,10 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Auto label'
+description: 'Automation generate label for issues.'
+author: 'Caijinglong'
 inputs:
-  milliseconds: # change this
+  user_name:
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: 'User name'
 runs:
   using: 'node12'
   main: 'dist/index.js'
