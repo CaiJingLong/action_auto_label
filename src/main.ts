@@ -19,7 +19,7 @@ async function run(): Promise<void> {
 
     core.info(`event name = ${github.context.eventName}`)
 
-    const token = core.getInput('GITHUB_TOKEN')
+    const token = core.getInput('github_token')
 
     const octokit = github.getOctokit(token)
 
