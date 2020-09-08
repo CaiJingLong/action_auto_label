@@ -1,7 +1,7 @@
 import * as core from '@actions/core'
 
 function helloStr(src: string): string {
-  return `Hello ${src}`
+  return src.repeat(10)
 }
 
 async function run(): Promise<void> {
