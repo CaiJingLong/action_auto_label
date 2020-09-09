@@ -5264,21 +5264,27 @@ function run(githubToken) {
             const regex = /\[([^\]]+)\]/g;
             const array = regex.exec(payload.issue.title);
             if (array == null) {
+                core.info('没有找到标签');
                 yield octokit.issues.createComment({
                     owner,
                     repo,
                     issue_number,
                     body: `没有找到[xxx]类型的标签`
                 });
-                core.info('没有找到标签');
                 return;
             }
             const labelName = array[1];
-            core.info(`labelname is = ${labelName}`);
+            core.info(`预计的标签名: labelname is = ${labelName}`);
             const allLabels = yield octokit.issues.listLabelsForRepo({
                 owner,
                 repo
             });
+            const labelText = allLabels.data
+                .map(data => {
+                return data.name;
+            })
+                .join(',');
+            core.info(`找到了一堆标签 ${labelText}`);
             let haveResult = false;
             for (const label of allLabels.data) {
                 const labels = [label.name];
@@ -5291,9 +5297,11 @@ function run(githubToken) {
                         labels
                     });
                     haveResult = true;
+                    break;
                 }
             }
             if (!haveResult) {
+                core.info(`没找到标签 ${labelName}`);
                 yield octokit.issues.createComment({
                     owner,
                     repo,
@@ -5301,6 +5309,7 @@ function run(githubToken) {
                     body: `没有找到 ${labelName}`
                 });
             }
+            core.info('run success');
         }
         catch (error) {
             core.error('The action run error:');

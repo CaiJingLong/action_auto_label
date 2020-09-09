@@ -27,23 +27,32 @@ export async function run(githubToken: string): Promise<void> {
     const regex = /\[([^\]]+)\]/g
     const array = regex.exec(payload.issue.title)
     if (array == null) {
+      core.info('没有找到标签')
       await octokit.issues.createComment({
         owner,
         repo,
         issue_number,
         body: `没有找到[xxx]类型的标签`
       })
-      core.info('没有找到标签')
       return
     }
 
     const labelName = array[1]
-    core.info(`labelname is = ${labelName}`)
+    core.info(`预计的标签名: labelname is = ${labelName}`)
 
     const allLabels = await octokit.issues.listLabelsForRepo({
       owner,
       repo
     })
+
+    const labelText = allLabels.data
+      .map<string>(data => {
+        return data.name
+      })
+      .join(',')
+
+    core.info(`找到了一堆标签 ${labelText}`)
+
     let haveResult = false
 
     for (const label of allLabels.data) {
@@ -57,10 +66,12 @@ export async function run(githubToken: string): Promise<void> {
           labels
         })
         haveResult = true
+        break
       }
     }
 
     if (!haveResult) {
+      core.info(`没找到标签 ${labelName}`)
       await octokit.issues.createComment({
         owner,
         repo,
@@ -68,6 +79,8 @@ export async function run(githubToken: string): Promise<void> {
         body: `没有找到 ${labelName}`
       })
     }
+
+    core.info('run success')
   } catch (error) {
     core.error('The action run error:')
     core.error(error)
