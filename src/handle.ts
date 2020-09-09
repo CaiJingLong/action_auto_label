@@ -27,7 +27,9 @@ export async function run(githubToken: string): Promise<void> {
     const regex = /\[([^\]]+)\]/g
     const array = regex.exec(payload.issue.title)
     if (array == null) {
-      core.info('没有找到标签')
+      core.info(
+        `没有找到标签, 回复一下: owner: ${owner}, repo = ${repo}, issue_number = ${issue_number}`
+      )
       await octokit.issues.createComment({
         owner,
         repo,
