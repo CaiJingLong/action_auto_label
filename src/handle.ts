@@ -5,6 +5,7 @@ import * as Webhooks from '@octokit/webhooks'
 export async function run(githubToken: string): Promise<void> {
   try {
     if (github.context.eventName !== 'issues') {
+      core.info(`目前仅支持 issues 触发, 你的类型是${github.context.eventName}`)
       return
     }
     core.info(`The run token = '${githubToken}'`)

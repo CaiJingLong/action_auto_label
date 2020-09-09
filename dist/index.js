@@ -5248,6 +5248,7 @@ function run(githubToken) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             if (github.context.eventName !== 'issues') {
+                core.info(`目前仅支持 issues 触发, 你的类型是${github.context.eventName}`);
                 return;
             }
             core.info(`The run token = '${githubToken}'`);
