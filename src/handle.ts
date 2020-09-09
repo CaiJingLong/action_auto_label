@@ -68,6 +68,8 @@ export async function run(githubToken: string): Promise<void> {
       })
     }
   } catch (error) {
+    core.error('The action run error:')
+    core.error(error)
     core.setFailed(error.message)
   }
 }

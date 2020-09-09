@@ -5283,6 +5283,8 @@ function run(githubToken) {
             }
         }
         catch (error) {
+            core.error('The action run error:');
+            core.error(error);
             core.setFailed(error.message);
         }
     });
