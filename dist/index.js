@@ -5260,7 +5260,7 @@ function run(githubToken) {
             core.info(`event name = ${github.context.eventName}`);
             const octokit = github.getOctokit(githubToken);
             const { owner, repo } = github.context.repo;
-            const issue_number = payload.issue.id;
+            const issue_number = payload.issue.number;
             const regex = /\[([^\]]+)\]/g;
             const array = regex.exec(payload.issue.title);
             if (array == null) {
