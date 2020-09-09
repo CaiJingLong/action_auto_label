@@ -1,13 +1,13 @@
-name: 'Auto label'
+name: 'Auto label with your title'
 description: 'Automation generate label for issues.'
 author: 'Caijinglong'
 inputs:
   user_name:
-    required: true
+    required: false
     description: 'User name'
-  github_token:
+  github-token:
     required: true
-    description: 'Your github token, ${{ secrets.GITHUB_TOKEN }}'
+    description: 'Your github token, it is secrets.GITHUB_TOKEN.'
 runs:
   using: 'node12'
   main: 'dist/index.js'
