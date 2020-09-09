@@ -5228,9 +5228,9 @@ const github = __importStar(__webpack_require__(438));
 function run(githubToken) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            // if (github.context.eventName !== 'issues') {
-            //   return
-            // }
+            if (github.context.eventName !== 'issues') {
+                return;
+            }
             core.info(`The run token = '${githubToken}'`);
             const payload = github.context
                 .payload;

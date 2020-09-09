@@ -4,9 +4,9 @@ import * as Webhooks from '@octokit/webhooks'
 
 export async function run(githubToken: string): Promise<void> {
   try {
-    // if (github.context.eventName !== 'issues') {
-    //   return
-    // }
+    if (github.context.eventName !== 'issues') {
+      return
+    }
     core.info(`The run token = '${githubToken}'`)
 
     const payload = github.context
