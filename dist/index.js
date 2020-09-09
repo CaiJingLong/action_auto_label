@@ -5263,8 +5263,9 @@ function run(githubToken) {
             const issue_number = payload.issue.number;
             const regex = /\[([^\]]+)\]/g;
             const array = regex.exec(payload.issue.title);
+            core.info(`触发的issue : owner: ${owner}, repo = ${repo}, issue_number = ${issue_number}`);
             if (array == null) {
-                core.info(`没有找到标签, 回复一下: owner: ${owner}, repo = ${repo}, issue_number = ${issue_number}`);
+                core.info(`没有找到标签, 回复一下`);
                 yield octokit.issues.createComment({
                     owner,
                     repo,
