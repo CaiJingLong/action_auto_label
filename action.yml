@@ -3,7 +3,7 @@ description: 'Automation generate label for issues.'
 author: 'Caijinglong'
 inputs:
   user_name:
-    required: true
+    required: false
     description: 'User name'
   github-token:
     required: true

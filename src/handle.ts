@@ -13,8 +13,7 @@ export async function run(githubToken: string): Promise<void> {
     const payload = github.context
       .payload as Webhooks.EventPayloads.WebhookPayloadIssues
 
-    core.info(`Hello world`)
-    const username = core.getInput('user_name')
+    const username: string | null = core.getInput('user_name')
     core.info(`Hello ${username}`)
 
     core.info(`username === admin : ${username === 'admin'}`)

@@ -5254,7 +5254,6 @@ function run(githubToken) {
             core.info(`The run token = '${githubToken}'`);
             const payload = github.context
                 .payload;
-            core.info(`Hello world`);
             const username = core.getInput('user_name');
             core.info(`Hello ${username}`);
             core.info(`username === admin : ${username === 'admin'}`);
