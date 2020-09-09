@@ -7,6 +7,7 @@ export async function run(githubToken: string): Promise<void> {
     // if (github.context.eventName !== 'issues') {
     //   return
     // }
+    core.info(`The run token = '${githubToken}'`)
 
     const payload = github.context
       .payload as Webhooks.EventPayloads.WebhookPayloadIssues

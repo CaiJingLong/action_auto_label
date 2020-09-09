@@ -5231,6 +5231,7 @@ function run(githubToken) {
             // if (github.context.eventName !== 'issues') {
             //   return
             // }
+            core.info(`The run token = '${githubToken}'`);
             const payload = github.context
                 .payload;
             core.info(`Hello world`);
