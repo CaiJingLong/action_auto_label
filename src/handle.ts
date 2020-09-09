@@ -63,7 +63,7 @@ export async function run(githubToken: string): Promise<void> {
     for (const label of allLabels.data) {
       const labels = [label.name]
       if (labelName.toUpperCase() === label.name.toUpperCase()) {
-        core.info('找到了标签')
+        core.info('找到了标签, 标上')
         await octokit.issues.addLabels({
           owner,
           repo,
@@ -76,7 +76,9 @@ export async function run(githubToken: string): Promise<void> {
     }
 
     if (!haveResult) {
-      core.info(`没找到标签 ${labelName}`)
+      core.info(
+        `没找到标签 ${labelName}, 回复下, 可能是新问题, 现在先短暂回复一下`
+      )
       await octokit.issues.createComment({
         owner,
         repo,
