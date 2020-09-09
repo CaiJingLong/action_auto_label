@@ -1,4 +1,4 @@
-name: 'Auto label'
+name: 'Auto label with your title'
 description: 'Automation generate label for issues.'
 author: 'Caijinglong'
 inputs:
